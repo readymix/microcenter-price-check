@@ -1,12 +1,12 @@
-﻿## Stop Blink(1) Current State.  This is needed as otherwise the states overlap ##
-Invoke-RestMethod -Uri "http://localhost:8934/blink1/off"
+## Stop Blink(1) Current State.  This is needed as otherwise the states overlap ##
+#Invoke-RestMethod -Uri "http://localhost:8934/blink1/off"
 
 ## Import CSV Formatted List of Products to Check ##
-$list = Import-Csv -Path C:\scripts\data\microcenter.csv
+$list = Import-Csv -Path C:\path\to\microcenter.csv
 
 ## Set Blink(1) REST states ##
-$blinkurigood = "http://localhost:8934/blink1/pattern/play?pname=greenalert"
-$blinkuribad = "http://localhost:8934/blink1/fadeToRGB?rgb=%23ff0000"
+#$blinkurigood = "http://localhost:8934/blink1/pattern/play?pname=greenalert"
+#$blinkuribad = "http://localhost:8934/blink1/fadeToRGB?rgb=%23ff0000"
 
 $list |% {
     
@@ -32,11 +32,11 @@ $list |% {
     if($price -lt $goprice)
         {
         Write-Host "Price is $price, is that low enough for you?!"
-        Invoke-WebRequest -uri $blinkurigood
+        #Invoke-WebRequest -uri $blinkurigood
         }
     if($price -eq $goprice)
         {
         Write-Host "Price is still $goprice, ignore this"
-        Invoke-WebRequest -Uri $blinkuribad
+        #Invoke-WebRequest -Uri $blinkuribad
         }
 }
